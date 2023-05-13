@@ -1,8 +1,9 @@
-FROM frolvlad/alpine-glibc:alpine-3.17
+FROM frolvlad/alpine-glibc:alpine-3.18
 
-ARG CONDA_VERSION="py39_4.12.0"
-ARG CONDA_SHA256="78f39f9bae971ec1ae7969f0516017f2413f17796670f7040725dd83fcff5689"
+ARG CONDA_VERSION="latest"
+ARG CONDA_SHA256="aef279d6baea7f67940f16aad17ebe5f6aac97487c7c03466ff01f4819e5a651"
 ARG CONDA_DIR="/opt/conda"
+ARG PYTHON_VERSION=3.11
 
 ENV PATH="$CONDA_DIR/bin:$PATH"
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -33,3 +34,7 @@ RUN echo "**** install dev packages ****" && \
     echo "**** finalize ****" && \
     mkdir -p "$CONDA_DIR/locks" && \
     chmod 777 "$CONDA_DIR/locks"
+
+RUN conda install -y python=$PYTHON_VERSION \
+    && conda update conda -y \
+    && conda clean -all
