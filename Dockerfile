@@ -1,4 +1,6 @@
-FROM frolvlad/alpine-glibc:alpine-3.18
+ARG IMAGE="frolvlad/alpine-glibc:alpine-3.18"
+
+FROM $IMAGE
 
 ARG CONDA_VERSION="latest"
 ARG CONDA_SHA256="aef279d6baea7f67940f16aad17ebe5f6aac97487c7c03466ff01f4819e5a651"
